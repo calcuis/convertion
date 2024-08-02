@@ -1,5 +1,4 @@
-import os
-import win32com.client
+import os, win32com.client
 
 def convert_word_to_pdf(doc_path, pdf_path):
     word = win32com.client.Dispatch("Word.Application")
@@ -41,5 +40,47 @@ def convert_all_files_to_pdf():
         elif file_name.endswith(".ppt") or file_name.endswith(".pptx"):
             convert_ppt_to_pdf(file_path, pdf_path)
 
+def convert_all_doc_to_pdf():
+    current_directory = os.getcwd()
+
+    for file_name in os.listdir(current_directory):
+        file_path = os.path.join(current_directory, file_name)
+        pdf_path = os.path.splitext(file_path)[0] + '.pdf'
+        
+        if file_name.endswith(".doc") or file_name.endswith(".docx"):
+            convert_word_to_pdf(file_path, pdf_path)
+
+def convert_all_xls_to_pdf():
+    current_directory = os.getcwd()
+
+    for file_name in os.listdir(current_directory):
+        file_path = os.path.join(current_directory, file_name)
+        pdf_path = os.path.splitext(file_path)[0] + '.pdf'
+        
+        if file_name.endswith(".xls") or file_name.endswith(".xlsx"):
+            convert_excel_to_pdf(file_path, pdf_path)
+
+def convert_all_ppt_to_pdf():
+    current_directory = os.getcwd()
+
+    for file_name in os.listdir(current_directory):
+        file_path = os.path.join(current_directory, file_name)
+        pdf_path = os.path.splitext(file_path)[0] + '.pdf'
+        
+        if file_name.endswith(".ppt") or file_name.endswith(".pptx"):
+            convert_ppt_to_pdf(file_path, pdf_path)
+
 if __name__ == "__main__":
-    convert_all_files_to_pdf()
+    print("Please select a conversion:\n1. ALL to pdf\n2. word to pdf\n3. excel to pdf\n4. powerpoint to pdf")
+    choice = input("Enter your choice (1 to 4): ")
+
+    if choice=="1":
+        convert_all_files_to_pdf()
+    elif choice=="2":
+        convert_all_doc_to_pdf()
+    elif choice=="3":
+        convert_all_xls_to_pdf()
+    elif choice=="4":
+        convert_all_ppt_to_pdf()
+    else:
+        print("Not a valid number.")
