@@ -1,5 +1,4 @@
-import os
-import win32com.client
+import os, win32com.client
 
 def convert_word_to_pdf(doc_path, pdf_path):
     word = win32com.client.Dispatch("Word.Application")
