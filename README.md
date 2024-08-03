@@ -1,6 +1,6 @@
 ### convertion
 
-convert .doc, .docx, .xls, .xlsx, .ppt, and .pptx file(s) to PDF in the current directory.
+convert .doc, .docx, .xls, .xlsx, .ppt, and .pptx files to PDF in the current directory.
 
 #### install it via (pip/pip3):
 ```
