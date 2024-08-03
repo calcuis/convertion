@@ -26,61 +26,36 @@ def convert_ppt_to_pdf(ppt_path, pdf_path):
     powerpoint.Quit()
     print(f"Converted {ppt_path} to {pdf_path}")
 
-def convert_all_files_to_pdf():
+def convert_all_to_pdf(file_type):
     current_directory = os.getcwd()
 
     for file_name in os.listdir(current_directory):
         file_path = os.path.join(current_directory, file_name)
         pdf_path = os.path.splitext(file_path)[0] + '.pdf'
         
-        if file_name.endswith(".doc") or file_name.endswith(".docx"):
-            convert_word_to_pdf(file_path, pdf_path)
-        elif file_name.endswith(".xls") or file_name.endswith(".xlsx"):
-            convert_excel_to_pdf(file_path, pdf_path)
-        elif file_name.endswith(".ppt") or file_name.endswith(".pptx"):
-            convert_ppt_to_pdf(file_path, pdf_path)
-
-def convert_all_doc_to_pdf():
-    current_directory = os.getcwd()
-
-    for file_name in os.listdir(current_directory):
-        file_path = os.path.join(current_directory, file_name)
-        pdf_path = os.path.splitext(file_path)[0] + '.pdf'
-        
-        if file_name.endswith(".doc") or file_name.endswith(".docx"):
-            convert_word_to_pdf(file_path, pdf_path)
-
-def convert_all_xls_to_pdf():
-    current_directory = os.getcwd()
-
-    for file_name in os.listdir(current_directory):
-        file_path = os.path.join(current_directory, file_name)
-        pdf_path = os.path.splitext(file_path)[0] + '.pdf'
-        
-        if file_name.endswith(".xls") or file_name.endswith(".xlsx"):
-            convert_excel_to_pdf(file_path, pdf_path)
-
-def convert_all_ppt_to_pdf():
-    current_directory = os.getcwd()
-
-    for file_name in os.listdir(current_directory):
-        file_path = os.path.join(current_directory, file_name)
-        pdf_path = os.path.splitext(file_path)[0] + '.pdf'
-        
-        if file_name.endswith(".ppt") or file_name.endswith(".pptx"):
-            convert_ppt_to_pdf(file_path, pdf_path)
+        if file_type=="2":
+            if file_name.endswith(".doc") or file_name.endswith(".docx"):
+                convert_word_to_pdf(file_path, pdf_path)
+        elif file_type=="3":
+            if file_name.endswith(".xls") or file_name.endswith(".xlsx"):
+                convert_excel_to_pdf(file_path, pdf_path)
+        elif file_type=="4":
+            if file_name.endswith(".ppt") or file_name.endswith(".pptx"):
+                convert_ppt_to_pdf(file_path, pdf_path)
 
 if __name__ == "__main__":
     print("Please select a conversion:\n1. ALL to pdf\n2. word to pdf\n3. excel to pdf\n4. powerpoint to pdf")
     choice = input("Enter your choice (1 to 4): ")
 
     if choice=="1":
-        convert_all_files_to_pdf()
+        convert_all_to_pdf("2")
+        convert_all_to_pdf("3")
+        convert_all_to_pdf("4")
     elif choice=="2":
-        convert_all_doc_to_pdf()
+        convert_all_to_pdf(choice)
     elif choice=="3":
-        convert_all_xls_to_pdf()
+        convert_all_to_pdf(choice)
     elif choice=="4":
-        convert_all_ppt_to_pdf()
+        convert_all_to_pdf(choice)
     else:
         print("Not a valid number.")
